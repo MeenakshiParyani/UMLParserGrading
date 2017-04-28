@@ -6,10 +6,12 @@ var DecompressZip = require('decompress-zip');
 var multer  = require('multer');
 var path = require('path');
 var uploadPath = path.resolve(__dirname + './../uploads/'); 
-var decompressPath = path.resolve(__dirname + './../uploads/source/');
+var libPath = path.resolve(__dirname + './libs'); 
+var sourcePath = path.resolve(__dirname + './../uploads/source/');
+var exec = require('child_process').exec;
 
 router.get('/', function(req, res) {
-  res.status(200).json({status: 'OK'});
+    res.status(200).json({status: 'OK'});
 });
 
 
@@ -48,12 +50,12 @@ router.get('/tenant', function(req, res) {
 });
 
 var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadPath)
-  },
-   filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
+    destination: function (req, file, cb) {
+      cb(null, uploadPath)
+    },
+     filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
 });
 var upload = multer({ storage: storage });
 
@@ -68,22 +70,25 @@ router.post('/upload', upload.any(), function (req, res, next) {
       console.log('Caught an error' + err);
     });
     unzipper.extract({
-      path: decompressPath
+      path: sourcePath
     });
     res.json(req.files[0].originalname);
 });
 
-router.post('/order/:orderID/pay', function(req, res) {
-  var options = {
-    url: process.env.GATEWAY_URL + '/order/' + req.params.orderID + '/pay',
-    method: 'POST',
-    json: req.body
-  };
+router.get('/parser', function(req, res) {
+    var outputFilename = req.params.filename;
+    var sourceFolder = sourcePath;
+    
+    var child = exec('java -jar ' + libPath + '/umlparser.jar',
+    function (error, stdout, stderr){
+      console.log('Output -> ' + stdout);
+      if(error !== null){
+        console.log("Error -> "+error);
+    }
+});
+ 
+module.exports = child;
 
-  request(options, function(err, r, body) {
-    if (err) { throw err; }
-    res.append('Content-Type', 'application/json').status(r.statusCode).send(body);
-  });
 });
 
 router.put('/order/:orderID', function(req, res) {
@@ -95,9 +100,9 @@ router.put('/order/:orderID', function(req, res) {
 
   request(options, function(err, r, body) {
     if (err) { throw err; }
-    res.append('Content-Type', 'application/json').status(r.statusCode).send(body);
+      res.append('Content-Type', 'application/json').status(r.statusCode).send(body);
+    });
   });
-});
 
 router.delete('/order/:orderID', function(req, res) {
   request.delete(process.env.GATEWAY_URL + '/order/' + req.params.orderID, function(err, r, body) {

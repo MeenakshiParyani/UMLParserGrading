@@ -44,6 +44,14 @@ angular.module('grader').component('grade', {
         file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
       });
     }
+
+    $scope.parse = function(){
+        $scope.parseUML = Upload.upload({
+        url: '/api/upload',
+        data: {file: file},
+      });
+    }
   		
   }]
+    }
 });

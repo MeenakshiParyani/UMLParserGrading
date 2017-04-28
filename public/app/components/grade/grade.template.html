@@ -17,6 +17,8 @@
       </span>
       <span ng-show="zipFile.result">Upload Successful</span>
       <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+      <button ng-show="zipFile.result" 
+              ng-click="parse()">Upload</button>
     </fieldset>
     <br>
   </form>
