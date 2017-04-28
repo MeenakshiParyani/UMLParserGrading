@@ -6,9 +6,10 @@ var DecompressZip = require('decompress-zip');
 var multer  = require('multer');
 var path = require('path');
 var uploadPath = path.resolve(__dirname + './../uploads/'); 
-var libPath = path.resolve(__dirname + './libs'); 
+var libPath = path.resolve(__dirname + '/libs'); 
 var sourcePath = path.resolve(__dirname + './../uploads/source/');
 var exec = require('child_process').exec;
+const util = require('util');
 
 router.get('/', function(req, res) {
     res.status(200).json({status: 'OK'});
@@ -75,16 +76,17 @@ router.post('/upload', upload.any(), function (req, res, next) {
     res.json(req.files[0].originalname);
 });
 
-router.get('/parser', function(req, res) {
-    var outputFilename = req.params.filename;
-    var sourceFolder = sourcePath;
-    
-    var child = exec('java -jar ' + libPath + '/umlparser.jar',
+router.get('/parse', function(req, res) {
+    var outputFilename = 'output.png';
+    var outputFilepath = sourcePath + '/' + outputFilename;
+    var child = exec('java -jar ' + libPath + '/umlparser.jar ' 
+      + sourcePath + ' ' + outputFilename,
     function (error, stdout, stderr){
       console.log('Output -> ' + stdout);
       if(error !== null){
-        console.log("Error -> "+error);
-    }
+        console.log("Error -> "+ error);
+      }
+      res.sendFile(outputFilepath);
 });
  
 module.exports = child;

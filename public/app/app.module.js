@@ -16,8 +16,8 @@ grader.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     component: 'grade'
   });
 
-  $stateProvider.state('upload', {
-    url: '/upload',
+  $stateProvider.state('output', {
+    url: '/output',
     component: 'output'
   });
 

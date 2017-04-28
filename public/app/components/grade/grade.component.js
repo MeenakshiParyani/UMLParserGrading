@@ -1,7 +1,8 @@
 angular.module('grader').component('grade', {
   templateUrl: 'components/grade/grade.template.html',
   
-  controller: ['$scope', 'Upload','$timeout', '$stateParams', function GradeController($scope, Upload, $timeout, $stateParams) {
+  controller: ['$scope', 'Upload','$timeout', '$stateParams', '$http', '$state', '$rootScope', 
+  function GradeController($scope, Upload, $timeout, $stateParams, $http, $state, $rootScope) {
 
   	$scope.doUpload = function () {
   		console.log($scope); 
@@ -46,12 +47,15 @@ angular.module('grader').component('grade', {
     }
 
     $scope.parse = function(){
-        $scope.parseUML = Upload.upload({
-        url: '/api/upload',
-        data: {file: file},
+        $http.get('/api/parse', {
+        fileName : 'output.png'
+      }).then(function(res) {
+        //res.sendFile(res.data.file);
+        $rootScope.image = res.data;
+        $state.go('output');
       });
     }
   		
   }]
-    }
+
 });
