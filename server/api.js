@@ -9,9 +9,10 @@ router.get('/', function(req, res) {
 
 
 router.get('/login', function(req, res) {
+  console.log('request is ' + req.params)
     var user = req.params.username;
     var pass = req.params.password;
-    console.log(username + ' ' + password);
+    console.log(user + ' =======' + pass);
     tenants.find({username : user, password : pass}, function(err, user) {
         if (err){
           console.log(err);

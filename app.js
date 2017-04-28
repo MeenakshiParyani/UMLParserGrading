@@ -24,7 +24,11 @@ app.use(express.static(path.join(__dirname, 'public/app')));
 app.use('/api', api);
 
 // Serve static files on all other routes
-app.get('*', function(req, res) {
+app.get('/login', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public/app/components/login/login.template.html'));
+});
+// Serve static files on all other routes
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/app/index.html'));
 });
 

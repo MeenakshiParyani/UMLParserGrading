@@ -1,8 +1,8 @@
 angular.module('grader').service('LoginService', function($http) {
   var service = {
-    username = '';
-    password = '';
-    validUser = false;
+    username : '',
+    password : '',
+    validUser : false,
 
     setUsername: function(username){
       service.username = username;
@@ -10,20 +10,17 @@ angular.module('grader').service('LoginService', function($http) {
 
     setPassword: function(password){
       service.password = password;
-    }
-   
+    },
+
+
     authenticate: function() {
-      $http.post('/api/login', {
+      return $http.get('/api/login', {
         'username' : service.username,
         'password' : service.password
       }).then(function(res) {
-        if(res.status=='success')
-          validUser = true;
-        else
-          validUser = false;
-        return validUser;
-      }).error(function(res){
-          alert('Error Authenticating User!!')
+        if(res.data.status=='success')
+          service.validUser = true;
+        return service.validUser;
       });
     },
 
