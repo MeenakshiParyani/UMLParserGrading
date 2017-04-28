@@ -1,4 +1,23 @@
-
-<div>
-	Grading!!!!!!!!!!!!
+<div class="panel panel-default">
+  <form name="myForm">
+    <fieldset>
+      <legend>Source Code Upload</legend>
+      <br>Zip:
+      <input type="file" ngf-select ng-model="zipFile" name="file"    
+             accept="application/x-zip-compressed" ngf-max-size="50MB" required
+             >
+      <i ng-show="myForm.file.$error.required">*required</i><br>
+      <button ng-click="zipFile = null" ng-show="zipFile">Remove</button>
+      <br>
+      <button ng-disabled="!myForm.$valid" 
+              ng-click="uploadZip(zipFile)">Upload</button>
+      <span class="progress" ng-show="zipFile.progress >= 0">
+        <div style="width:{{zipFile.progress}}%" 
+            ng-bind="zipFile.progress + '%'"></div>
+      </span>
+      <span ng-show="zipFile.result">Upload Successful</span>
+      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+    </fieldset>
+    <br>
+  </form>
 </div>

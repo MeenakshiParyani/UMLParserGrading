@@ -1,4 +1,4 @@
-var grader = angular.module('grader', ['ui.router']);
+var grader = angular.module('grader', ['ui.router', 'lr.upload','ngFileUpload']);
 
 grader.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode({
@@ -14,6 +14,11 @@ grader.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider.state('grade', {
     url: '/grade',
     component: 'grade'
+  });
+
+  $stateProvider.state('upload', {
+    url: '/upload',
+    component: 'output'
   });
 
 

@@ -21,8 +21,6 @@ angular.module('grader').component('login', {
            else
             console.log('Error Authenticating User!!');
         });
-	  		
-	  		
   		}
   		
   }]

@@ -3,6 +3,7 @@ angular.module('grader').service('LoginService', function($http) {
     username : '',
     password : '',
     validUser : false,
+    tenantName : '',
 
     setUsername: function(username){
       service.username = username;
@@ -12,6 +13,14 @@ angular.module('grader').service('LoginService', function($http) {
       service.password = password;
     },
 
+    getTenantname: function(){
+      return $http.get('/api/tenant', {
+        'username' : service.username
+      }).then(function(res) {
+        service.tenantName = res.tenantName;
+        return service.tenantName;
+      });
+    },
 
     authenticate: function() {
       return $http.get('/api/login', {
