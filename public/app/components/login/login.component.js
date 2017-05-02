@@ -7,7 +7,7 @@ angular.module('grader').component('login', {
       	username = '';
       	password = '';
       	isValidUser = false;
-  		
+  		$rootScope.headerText = "Grading for Tenant : {{tenantName}}"
 
   		this.authenticate = function(){
   			LoginService.setUsername(this.username);

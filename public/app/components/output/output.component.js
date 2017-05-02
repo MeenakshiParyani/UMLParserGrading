@@ -4,11 +4,10 @@ angular.module('grader').component('output', {
   controller: ['$stateParams', '$scope', '$rootScope' , 
   function OutputController($stateParams, $scope, $rootScope) {
   	$scope.image = $rootScope.image;
-
-  	$scope.changeVote = function(vote, flag){
-	    $scope.vote = vote==flag?'None':flag;
-	    alert($scope.vote);
-  };
+  	$scope.tenant = $rootScope.tenant;
+  	$scope.changeVote = function(newGrade){
+	    $scope.grade = newGrade;
+  	};
   }
 
 

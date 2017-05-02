@@ -1,4 +1,4 @@
-angular.module('grader').service('LoginService', function($http) {
+angular.module('grader').service('LoginService', function($http, $rootScope) {
   var service = {
     username : '',
     password : '',

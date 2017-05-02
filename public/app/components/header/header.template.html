@@ -17,12 +17,12 @@
         <div class="col-md-9">
         <div class = "row">
         <h1>
-           <div class="pull-right">UML Parser Grader Login</div>
+           <div class="pull-right" ng-show="!tenantName"> UML Parser Grader Login </div>
         </h1>
         </div>
         <div class = "row">
         <h1>
-           <div class="pull-right" ng-show="false">Grading for {{$ctrl.tenantName}}</div>
+           <div class="pull-right" ng-show="tenantName"> Grading for {{tenantName}} </div>
         </h1>
         </div>
         </div>

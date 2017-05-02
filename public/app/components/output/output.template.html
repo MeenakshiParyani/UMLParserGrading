@@ -1,10 +1,19 @@
-<div class="panel panel-default" layout-align="center center">
-<!-- <img ng-src="{{image}}"> -->
+<div class="panel panel-default">
+<div class = "center" align = "center"><h3> UML Parser Output</h3></div>
 <div class = "center" align="center">
 	<img ng-src="{{image}}">
 </div>
 <div class = "center" align = "center">
-	<h2> Enter Grades for {{tenant}}</h2>
-	<button type="button" id="upBtn" class="btn btn-success glyphicon glyphicon-thumbs-up">Pass</button ng-change="changeVote(vote, 'up')"  ng-class="{true:'up', false:''}[vote=='up']">
-	<button type="button" id="downBtn" class="btn btn-danger glyphicon glyphicon-thumbs-down">Fail</button ng-change="changeVote(vote, 'down')"  ng-class="{true:'down', false:''}[vote=='down']">
+	<h3> Enter Grades for {{tenant}}</h3>
+	<div class="btn-group">
+	    <label  btn-radio="'Pass'" ng-click="changeVote('pass')">
+	        Pass <span class="btn btn-success glyphicon glyphicon-thumbs-down"></span>
+	    </label>
+	    <label btn-radio="'Fail'" ng-click="changeVote('fail')">
+	        Fail <span class="btn btn-danger glyphicon glyphicon-thumbs-up"></span>
+	    </label>
+	</div>
+	<div ng-show="grade">
+		<h3> Graded {{tenant}} As : {{grade}}</h3>
+	</div>
 </div>
