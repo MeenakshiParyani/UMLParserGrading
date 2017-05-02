@@ -1,14 +1,10 @@
 <div class="panel panel-default" layout-align="center center">
 <!-- <img ng-src="{{image}}"> -->
-<div>
-<img ng-src="{{image}}">
-</div>div>
-<div>
-<h2> Enter Grades for {{tenant}}</h2>
-<button type="button" 
-        id="testBtn" 
-        class="btn btn-success glyphicon glyphicon-thumbs-up" 
-        data-loading-text=" ... ">
-    4</button>
-<button type="button" id="testBtnDown" class="btn btn-danger glyphicon glyphicon-thumbs-down" data-loading-text=" ... ">
-    4</button>
+<div class = "center" align="center">
+	<img ng-src="{{image}}">
+</div>
+<div class = "center" align = "center">
+	<h2> Enter Grades for {{tenant}}</h2>
+	<button type="button" id="upBtn" class="btn btn-success glyphicon glyphicon-thumbs-up">Pass</button ng-change="changeVote(vote, 'up')"  ng-class="{true:'up', false:''}[vote=='up']">
+	<button type="button" id="downBtn" class="btn btn-danger glyphicon glyphicon-thumbs-down">Fail</button ng-change="changeVote(vote, 'down')"  ng-class="{true:'down', false:''}[vote=='down']">
+</div>

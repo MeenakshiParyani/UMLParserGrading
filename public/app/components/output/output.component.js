@@ -12,5 +12,4 @@ angular.module('grader').component('output', {
   }
 
 
-
 ]});

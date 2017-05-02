@@ -16,7 +16,7 @@
             ng-bind="zipFile.progress + '%'"></div>
       </span>
       <span ng-show="zipFile.result">Upload Successful</span>
-      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+      <span class="err" ng-show="errorMsg">{{errorMsg}}</span><br>
       <button ng-show="zipFile.result" 
               ng-click="parse()">Parse</button>
     </fieldset>
