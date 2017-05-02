@@ -50,7 +50,6 @@ angular.module('grader').component('grade', {
         $http.get('/api/parse', {
         fileName : 'output.png'
       }).then(function(res) {
-        //res.sendFile(res.data.file);
         $rootScope.image = res.data;
         $state.go('output');
       });
