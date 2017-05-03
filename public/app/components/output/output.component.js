@@ -9,14 +9,12 @@ angular.module('grader').component('output', {
   	$scope.changeVote = function(newGrade){
 	    $scope.grade = newGrade;
 	    $scope.allowGrading = false;
-	    $window.loading = true;
-	    $http.post('/api/saveGrade', {
+	    $http.post('/api/grade', {
           tableName : $rootScope.tenant.table_name,
 	    	  tenantId : $rootScope.tenant.tenant_id,
         	result : newGrade
       	}).then(function(res) {
         	return res;
-        	$window.loading = false;
       	});
   	};
   }

@@ -119,7 +119,7 @@ module.exports = child;
 
 });
 
-router.post('/api/saveGrade', function(req, res) {
+router.post('/grade', function(req, res) {
     var tableName = req.body.tableName;
     var tenantId = req.body.tenantId;
     var result = req.body.result;
