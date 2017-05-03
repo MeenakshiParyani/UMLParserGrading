@@ -1,9 +1,7 @@
 <div>
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      
-        <div class="col-md-3">
+      <div class = "row">
+        <div class="col-md-4">
           <button type="button" class="navbar-toggle collapsed"
             data-toggle="collapse" data-target="navbar">
             <span class="icon-bar"></span>
@@ -14,20 +12,24 @@
             <img src="assets/images/cloud1.png" />
           </a>
         </div>
-        <div class="col-md-9">
-        <div class = "row">
-        <h1>
-           <div class="pull-right" ng-show="!tenantName"> UML Parser Grader Login </div>
-        </h1>
+        <div class="col-md-8">
+           <div class="pull-center"> <h1> {{headerText}} </h1></div>
         </div>
-        <div class = "row">
-        <h1>
-           <div class="pull-right" ng-show="tenantName"> Grading for {{tenantName}} </div>
-        </h1>
-        </div>
-        </div>
-       
-      </div>
-      </div>
+       </div>
   </nav>
 </div>
+
+<!-- <div class="container-fluid">
+  <div class="row">
+  <div class="col-md-4">
+    <a href ng-click="$ctrl.setState('login')">
+      <img src="assets/images/cloud1.png" />
+    </a>
+  </div>
+  <div class="col-md-8">
+    <h1>
+      <div class="pull-center"> {{headerText}} </div>
+    </h1>
+  </div>  
+  </div>
+</div> -->

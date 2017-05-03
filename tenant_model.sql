@@ -16,7 +16,6 @@ INSERT INTO `cmpe281-umlparser`.`Tenants` (`tenant_name`, `username`, `password`
 INSERT INTO `cmpe281-umlparser`.`Tenants` (`tenant_name`, `username`, `password`, `table_name`) VALUES ('Meenakshi Paryani', 'meenakshi', 'meenakshi', 'Tenant3-Grade');
 INSERT INTO `cmpe281-umlparser`.`Tenants` (`tenant_name`, `username`, `password`, `table_name`) VALUES ('Vivek Agarwal', 'vivek', 'vivek', 'Tenant4-Grade');
 
-
 # Tenant1 Table for Aniruddha Pratap Singh
   CREATE TABLE `cmpe281-umlparser`.`Tenant1-Grade` (
   `tenant1_id` INT NOT NULL,

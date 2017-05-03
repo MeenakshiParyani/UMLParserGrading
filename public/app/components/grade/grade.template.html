@@ -1,12 +1,13 @@
 <div class="panel panel-default">
+<div class="form-group form-inline">
   <form name="myForm">
     <fieldset>
       <legend>Source Code Upload</legend>
-      <br>Zip:
+      <h3>Upload Source Zip: </h3>
       <input type="file" ngf-select ng-model="zipFile" name="file"    
              accept="application/x-zip-compressed" ngf-max-size="50MB" required
              >
-      <i ng-show="myForm.file.$error.required">*required</i><br>
+      <i ng-show="myForm.file.$error.required">*required</i>
       <button ng-click="zipFile = null" ng-show="zipFile">Remove</button>
       <br>
       <button ng-disabled="!myForm.$valid" 
@@ -16,10 +17,14 @@
             ng-bind="zipFile.progress + '%'"></div>
       </span>
       <span ng-show="zipFile.result">Upload Successful</span>
-      <span class="err" ng-show="errorMsg">{{errorMsg}}</span><br>
+      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
       <button ng-show="zipFile.result" 
               ng-click="parse()">Parse</button>
     </fieldset>
     <br>
   </form>
+</div>
+<div>  
+  <img id="mySpinner" src="/assets/images/spinner.gif" ng-show="dataLoading" />
+</div>
 </div>

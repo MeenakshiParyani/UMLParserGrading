@@ -4,6 +4,8 @@ angular.module('grader').component('grade', {
   controller: ['$scope', 'Upload','$timeout', '$stateParams', '$http', '$state', '$rootScope', 
   function GradeController($scope, Upload, $timeout, $stateParams, $http, $state, $rootScope) {
 
+    $scope.headerText = 'Grading for Tenant : ' + $rootScope.tenant.tenant_name;
+    $scope.dataLoading = false;
   	$scope.doUpload = function () {
   		console.log($scope); 
   	 	console.log(upload);
@@ -11,11 +13,11 @@ angular.module('grader').component('grade', {
   	 	console.log(fd);
   	}
 
-  if($stateParams != 'undefined'){
+  /*if($stateParams != 'undefined'){
 	 
 	  console.log('id is ' + $stateParams.tenantId);
 	  $scope.tenantId = $stateParams.tenantId;
-  }
+  }*/
 
   $scope.setFiles = function($element) {
     $scope.$apply(function($scope) {
@@ -47,10 +49,12 @@ angular.module('grader').component('grade', {
     }
 
     $scope.parse = function(){
+      $scope.dataLoading = true;
         $http.get('/api/parse', {
         fileName : 'output.png'
       }).then(function(res) {
         $rootScope.image = res.data;
+        $scope.dataLoading = false;
         $state.go('output');
       });
     }

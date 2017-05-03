@@ -12,26 +12,37 @@ var imageAbsPath = path.resolve(__dirname + './../public/app/assets/images');
 var imageRelPath = 'assets/images';
 var exec = require('child_process').exec;
 const util = require('util');
+var dbConfig = require('./../config/db');
+var mysql = require('mysql');
+var connection = mysql.createConnection(dbConfig.connectionParams);
+
 
 router.get('/', function(req, res) {
     res.status(200).json({status: 'OK'});
 });
 
 
-router.get('/login', function(req, res) {
-    var user = req.params.username;
-    var pass = req.params.password;
+router.post('/login', function(req, res) {
+    var user = req.body.username;
+    var pass = req.body.password;
     console.log(user + ' =======' + pass);
-    tenants.find({username : user, password : pass}, function(err, user) {
-        if (err){
-          console.log(err);
+    console.log(req);
+    var query = 'SELECT * from Tenants where username = "'+ user + '" AND password = "'+ pass + '"';
+    connection.query(query , 
+      function(err, rows, fields) {
+      if (!err){
+        if(1 > rows.length){
+          tenant = rows[0];
           res.send({'status' : 'error'});
         }else{
-          if(user)
-            res.json({'status' : 'success'}); // return success
-          else
-            res.send({'status' : 'error'});
-        }
+          console.log('The solution is: ', rows);
+          res.json({'status' : 'success', 'tenant' : rows[0]});
+        } 
+      }
+      else{
+        console.log('Error while performing Query.' + err);
+        res.send({'status' : 'error'});
+      }
     });
 });
 
@@ -108,24 +119,29 @@ module.exports = child;
 
 });
 
-router.put('/order/:orderID', function(req, res) {
-  var options = {
-    url: process.env.GATEWAY_URL + '/order/' + req.params.orderID,
-    method: 'PUT',
-    json: req.body
-  };
+router.post('/api/saveGrade', function(req, res) {
+    var tableName = req.body.tableName;
+    var tenantId = req.body.tenantId;
+    var result = req.body.result;
+    console.log(tableName + ' =======' + tenantId + '=========' + result);
 
-  request(options, function(err, r, body) {
-    if (err) { throw err; }
-      res.append('Content-Type', 'application/json').status(r.statusCode).send(body);
+    var query = 'INSERT INTO ' + tableName + ' ("tenant_id", "result") VALUES ("'+ tenantId +'","'+ result+'")';
+    console.log(query);
+    connection.query(query , 
+      function(err, rows, fields) {
+      if (!err){
+        if(1 > rows.length){
+          res.send({'status' : 'error'});
+        }else{
+          console.log('The solution is: ', rows);
+          res.json({'status' : 'success', 'tenant' : rows[0]});
+        } 
+      }
+      else{
+        console.log('Error while performing Query.' + err);
+        res.send({'status' : 'error'});
+      }
     });
-  });
-
-router.delete('/order/:orderID', function(req, res) {
-  request.delete(process.env.GATEWAY_URL + '/order/' + req.params.orderID, function(err, r, body) {
-    if (err) { throw err; }
-    res.append('Content-Type', 'application/json').status(r.statusCode).send(body);
-  });
 });
 
 module.exports = router;

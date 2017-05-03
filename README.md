@@ -42,5 +42,14 @@ XXXXAssociate the default DHCP options set for your AWS account with your defaul
 
 http://jodies.de/ipcalc?host=10.0.0.0&mask1=16&mask2=255.255.255.240
 
+---------------RDS------------------
+1. Create DB subnet group with selected subnets
+2. create RDS Mysql instance
+
+
+
+
+
+
 
 

@@ -2,16 +2,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var http = require('http');
-var mongoose = require('mongoose');
+
 // Controllers
 var api = require('./server/api');
 
 // Init App
 var app = express();
 
-//mongo db config
-var dbConfig = require('./config/db');
-mongoose.connect(dbConfig.url, dbConfig.options);
 
 // Middleware
 app.use(bodyParser.json());
@@ -31,6 +28,8 @@ app.get('/login', function(req, res) {
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/app/index.html'));
 });
+
+
 
 // Start server
 var server = http.createServer(app);

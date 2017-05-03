@@ -4,16 +4,16 @@
 	<img ng-src="{{image}}">
 </div>
 <div class = "center" align = "center">
-	<h3> Enter Grades for {{tenant}}</h3>
-	<div class="btn-group">
-	    <label  btn-radio="'Pass'" ng-click="changeVote('pass')">
-	        Pass <span class="btn btn-success glyphicon glyphicon-thumbs-down"></span>
+	<h3 ng-show="allowGrading"> Enter Grades for {{tenant.tenant_name}}</h3>
+	<div class="btn-group" ng-show="allowGrading">
+	    <label  btn-radio="'Pass'" ng-click="changeVote('Pass')">
+	        Pass <span class="btn btn-success glyphicon glyphicon-thumbs-up"></span>
 	    </label>
-	    <label btn-radio="'Fail'" ng-click="changeVote('fail')">
-	        Fail <span class="btn btn-danger glyphicon glyphicon-thumbs-up"></span>
+	    <label btn-radio="'Fail'" ng-click="changeVote('Fail')">
+	        Fail <span class="btn btn-danger glyphicon glyphicon-thumbs-down"></span>
 	    </label>
 	</div>
 	<div ng-show="grade">
-		<h3> Graded {{tenant}} As : {{grade}}</h3>
+		<h3> Graded {{tenant.tenant_name}} As : {{grade}}</h3>
 	</div>
 </div>

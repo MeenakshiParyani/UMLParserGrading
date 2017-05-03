@@ -23,13 +23,11 @@ angular.module('grader').service('LoginService', function($http, $rootScope) {
     },
 
     authenticate: function() {
-      return $http.get('/api/login', {
+      return $http.post('/api/login', {
         'username' : service.username,
         'password' : service.password
       }).then(function(res) {
-        if(res.data.status=='success')
-          service.validUser = true;
-        return service.validUser;
+        return res.data;
       });
     },
 
