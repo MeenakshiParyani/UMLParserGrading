@@ -1,4 +1,4 @@
-var grader = angular.module('grader', ['ui.router', 'lr.upload','ngFileUpload','ng']);
+var grader = angular.module('grader', ['ui.router', 'lr.upload','ngFileUpload','ng', 'angular-loading-bar']);
 
 grader.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode({
@@ -8,7 +8,8 @@ grader.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $stateProvider.state('login', {
     url: '/',
-    component: 'login'
+    component: 'login',
+    showLogout: { value: "false" }
   });
 
   $stateProvider.state('grade', {

@@ -1,6 +1,6 @@
-<div class="panel panel-default">
+<!-- <div class="panel panel-default">
 <div class="form-group form-inline">
-  <form name="myForm">
+  <form name="myForm" class="form-inline">
     <fieldset>
       <legend>Source Code Upload</legend>
       <h3>Upload Source Zip: </h3>
@@ -26,5 +26,71 @@
 </div>
 <div>  
   <img id="mySpinner" src="/assets/images/spinner.gif" ng-show="dataLoading" />
+</div>
+</div> -->
+<!-- <div class="panel panel-default">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <form name="myForm" role="form" class="form-inline" style='display:inline;'>
+         <fieldset>
+          <legend>Source Code Upload</legend>
+          <h3>Upload Source Zip: </h3>
+          <span>
+            <input type="file" ngf-select ng-model="zipFile" name="file"    
+                 accept="application/x-zip-compressed" ngf-max-size="50MB" required
+                 >
+          <i ng-show="myForm.file.$error.required">*required</i>
+          <button ng-click="zipFile = null" ng-show="zipFile">Remove</button>
+          <button ng-disabled="!myForm.$valid" 
+                  ng-click="uploadZip(zipFile)">Upload</button>
+          </span>
+          
+          <span class="progress" ng-show="zipFile.progress >= 0">
+            <div style="width:{{zipFile.progress}}%" 
+                ng-bind="zipFile.progress + '%'"></div>
+          </span>
+          <span ng-show="zipFile.result">Upload Successful</span>
+          <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+          <button ng-show="zipFile.result" 
+                  ng-click="parse()">Parse</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+</div> -->
+<div class="panel panel-default">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <form role="form" name = "myForm" class="form-inline">
+      <legend>Source Code Upload</legend>
+      <h3>Upload Source Zip: </h3>
+        <div class="form-group">
+           <input class="btn btn-success" type="file" ngf-select ng-model="zipFile" name="file"    
+                 accept="application/x-zip-compressed" ngf-max-size="50MB" required>
+        </div>
+        <div class="form-group">   
+          <button class="btn btn-success" ng-click="zipFile = null" ng-show="zipFile">Remove</button>
+        </div>
+        <div class="form-group">
+           <button class="btn btn-success" ng-disabled="!myForm.$valid" 
+                  ng-click="uploadZip(zipFile)" >Upload</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success" ng-show="zipFile.result" 
+                  ng-click="parse()">Parse</button>
+        </div>
+        </form>
+        <span class="progress-bar progress-bar-warning" ng-show="zipFile.progress >= 0">
+            <div style="width:{{zipFile.progress}}%" 
+                ng-bind="zipFile.progress + '%'"></div>
+        </span>
+         <span ng-show="zipFile.result">Upload Successful</span>
+         <br><br><br>
+
+    </div>
+  </div>
 </div>
 </div>

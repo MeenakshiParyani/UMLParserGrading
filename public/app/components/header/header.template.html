@@ -1,5 +1,5 @@
 <div>
-  <nav class="navbar navbar-default">
+  <div class="panel panel-default">
       <div class = "row">
         <div class="col-md-4">
           <button type="button" class="navbar-toggle collapsed"
@@ -9,11 +9,14 @@
             <span class="icon-bar"></span>
           </button>
           <a href ng-click="$ctrl.setState('login')">
-            <img src="assets/images/cloud1.png" />
+            <img src="assets/images/cloud.jpg" />
           </a>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
            <div class="pull-center"> <h1> {{headerText}} </h1></div>
+        </div>
+        <div class="col-md-1">
+           <a href="$state.go('login')"> <b><u>Logout </b></u></a>
         </div>
        </div>
   </nav>
