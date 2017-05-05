@@ -1,5 +1,5 @@
 angular.module('grader').component('output', {
-  templateUrl: 'components/output/output.template.html',
+  templateUrl: '../components/output/output.template.html',
   
   controller: ['$stateParams', '$scope', '$rootScope' ,'$window', '$http',
   function OutputController($stateParams, $scope, $rootScope, $window, $http) {

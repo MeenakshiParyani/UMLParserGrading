@@ -5,6 +5,8 @@ angular.module('grader').component('grade', {
   function GradeController($scope, Upload, $timeout, $stateParams, $http, $state, $rootScope) {
 
     $scope.headerText = 'Grading for Tenant : ' + $rootScope.tenant.tenant_name;
+    $scope.tenant = $rootScope.tenant;
+    console.log($stateParams.username);
     $scope.dataLoading = false;
   	$scope.doUpload = function () {
   		console.log($scope); 

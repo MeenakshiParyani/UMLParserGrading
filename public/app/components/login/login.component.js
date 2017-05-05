@@ -4,7 +4,7 @@ angular.module('grader').component('login', {
   controller: ['$state','$scope', 'LoginService', '$rootScope',
   	function LoginController($state, $scope, LoginService, $rootScope) {
   		var self = this;
-      	username = '';
+      	$scope.username = '';
       	password = '';
       	isValidUser = false;
 
@@ -18,7 +18,7 @@ angular.module('grader').component('login', {
           $rootScope.tenant = res.tenant;
            console.log("Valid User "+this.isValidUser);
            if(this.isValidUser==true)
-            $state.go('grade');
+            $state.go('grade', {username : $rootScope.tenant.username});
            else
             alert('Error Authenticating User!!');
         });

@@ -119,13 +119,15 @@ module.exports = child;
 
 });
 
-router.post('/grade', function(req, res) {
+router.post('/grade/:username', function(req, res) {
     var tableName = req.body.tableName;
     var tenantId = req.body.tenantId;
     var result = req.body.result;
     console.log(tableName + ' =======' + tenantId + '=========' + result);
-
-    var query = 'INSERT INTO ' + tableName + ' ("tenant_id", "result") VALUES ("'+ tenantId +'","'+ result+'")';
+    if(result='Pass')
+      result = 1;
+    console.log('New Result is ' + result);
+    var query = 'INSERT INTO `' + tableName + '` (`tenant_id`, `result`) VALUES ("'+ tenantId +'","'+ result+'")';
     console.log(query);
     connection.query(query , 
       function(err, rows, fields) {

@@ -13,7 +13,7 @@ grader.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   });
 
   $stateProvider.state('grade', {
-    url: '/grade',
+    url: '/grade/:username',
     component: 'grade'
   });
 
