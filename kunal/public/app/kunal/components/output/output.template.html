@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+<div class = "center" align = "center"><h3> UML Parser Output</h3></div>
+<div class = "center" align="center">
+	<img ng-src="{{image}}">
+</div>
+<div class = "center" align = "center">
+	<h3 ng-show="allowGrading"> Enter Grades for {{tenant.tenant_name}}</h3>
+	<div class="btn-group" ng-show="allowGrading">
+	    <label  btn-radio="'Pass'" ng-click="changeVote('A')">
+	         <span class="btn btn-success">A</span>
+	    </label>
+	    <label btn-radio="'Fail'" ng-click="changeVote('B')">
+	         <span class="btn btn-info">B</span>
+	    </label>
+	    <label btn-radio="'Fail'" ng-click="changeVote('C')">
+	         <span class="btn btn-warning">C</span>
+	    </label>
+	    <label btn-radio="'Fail'" ng-click="changeVote('D')">
+	         <span class="btn btn-danger">D</span>
+	    </label>
+	</div>
+	<div ng-show="grade">
+		<h3> Graded {{tenant.tenant_name}} As : {{grade}}</h3>
+	</div>
+</div>
