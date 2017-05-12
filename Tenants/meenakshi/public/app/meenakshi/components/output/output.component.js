@@ -6,22 +6,19 @@ angular.module('grader').component('output', {
   	$scope.image = $rootScope.image;
   	$scope.tenant = $rootScope.tenant;
   	$scope.allowGrading = true;
-  	$scope.changeVote = function(newGrade){
-	    $scope.grade = newGrade;
-	    $scope.allowGrading = false;
-	    $http.post('/meenakshi/api/grade', {
-          tableName : $rootScope.tenant.table_name,
-	    	  tenantId : $rootScope.tenant.tenant_id,
-        	result : newGrade
-      	}).then(function(res) {
-        	return res;
-      	});
-  	};
+  	
 
     $scope.onRating = function(rating){
        $scope.allowGrading = false;
        console.log(rating);
        $scope.grade = rating;
+       $http.post('/meenakshi/api/grade', {
+          tableName : $rootScope.tenant.table_name,
+          tenantId : $rootScope.tenant.tenant_id,
+          result : rating
+        }).then(function(res) {
+          return res;
+        });
     }
   }
 
