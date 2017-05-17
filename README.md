@@ -1,6 +1,9 @@
 # Java Parser Grading
 
-Ec2 Instance Setup -
+# You Tube Demo link
+https://www.youtube.com/watch?v=7l1KRk-BFBg
+
+# Ec2 Instance Setup -
 
 1) Upgrade to Java 8
 --> # cd /opt/
